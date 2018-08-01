@@ -51,7 +51,7 @@
 
         //check and see if avg time between inputs breaks the input threshold
         var timeBetweenInputs = currentInputTime - scannerDetection.last_input_time;
-        scannerDetection.setAvgInputTime((avg_input_time + timeBetweenInputs) / 2);
+        scannerDetection.setAvgInputTime((scannerDetection.avg_input_time + timeBetweenInputs) / 2);
 
         //if it is currently scanning or the average time passes the threshold test, continue
         if (
@@ -75,11 +75,11 @@
                     //check if input stack is greater than 5
                     // TODO decide if this should belong to prevent quick number via
                     //keyboard/pad input
-                    if (scannerDetection.input_stack >= 5) {
+                    if (scannerDetection.input_stack.length >= 5) {
                         //DO ACTION HERE
-
+                        var barcode = scannerDetection.input_stack.join("");
                     }
-
+                    
                     //reset scanner-detection-state-dependent variables
                     scannerDetection.resetStack();
                     scannerDetection.resetAvgInputTime();
